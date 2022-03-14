@@ -19,6 +19,7 @@ namespace GneoCommonDataLibrary.Models
         public string FullName { get; set; }
         [Required]
         public bool IsDeleted { get; set; }
-        public List<Course> CourseofTeacher { get; set; } = new List<Course>();
+
+        public string GetFullName => $"{FirstName} {LastName}";
     }
 }

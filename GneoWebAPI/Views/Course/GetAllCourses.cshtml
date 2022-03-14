@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GneoCommonDataLibrary.Models.Course>
+
+@{
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2" style="padding-top:50px;">
+                <h1 class="text-center accent-gray">Courses Details</h1>
+                <p>
+                    <a asp-action="AddEditCourse" class="btn btn-success"><i class="fas fa-random"></i>Add New Course</a>
+
+                </p>
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CourseID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TeacherFullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Subject)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CurrentStudentCount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaximumStudentLimit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CanEnrollMoreStudents)
+                            </th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CourseID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TeacherFullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentStudentCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaximumStudentLimit)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CanEnrollMoreStudents)
+                                </td>
+                                
+                                <td>
+                                    <a asp-action="AddEditStudent" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+}
+
+
+
+
+

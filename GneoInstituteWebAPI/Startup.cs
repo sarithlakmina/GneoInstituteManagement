@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,8 @@ namespace GneoInstituteWebAPI
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
-            services.AddRazorPages();
+            //services.AddRazorPages();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,10 +55,16 @@ namespace GneoInstituteWebAPI
 
             app.UseAuthorization();
 
+
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+           
         }
     }
 }

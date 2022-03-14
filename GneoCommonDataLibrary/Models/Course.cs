@@ -17,6 +17,9 @@ namespace GneoCommonDataLibrary.Models
         public int MaximumStudentLimit { get; set; }
         public bool CanEnrollMoreStudents => MaximumStudentLimit <= CurrentStudentCount;
         public bool IsDeleted { get; set; } = false;
+
+        public virtual Teacher Teacher { get; set; }
         public List<Student> Students { get; set; } = new List<Student>();
+
     }
 }

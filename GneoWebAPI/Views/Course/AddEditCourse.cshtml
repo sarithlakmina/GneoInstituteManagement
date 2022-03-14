@@ -1,0 +1,74 @@
+﻿@model GneoCommonDataLibrary.Models.Course
+
+@{ 
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2" style="padding-top:50px;">
+
+                <h4 style="align-content:center">Add new Course</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-action="AddEditCourse">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="CourseID" class="control-label"></label>
+                                <input asp-for="CourseID" class="form-control" />
+                                <span asp-validation-for="CourseID" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TeacherFullName" class="control-label"></label>
+                                <input asp-for="TeacherFullName" class="form-control" />
+                                <span asp-validation-for="TeacherFullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Subject" class="control-label"></label>
+                                <input asp-for="Subject" class="form-control" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CurrentStudentCount" class="control-label"></label>
+                                <input asp-for="CurrentStudentCount" class="form-control" />
+                                <span asp-validation-for="CurrentStudentCount" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MaximumStudentLimit" class="control-label"></label>
+                                <input asp-for="MaximumStudentLimit" class="form-control" />
+                                <span asp-validation-for="MaximumStudentLimit" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="CanEnrollMoreStudents" /> @Html.DisplayNameFor(model => model.CanEnrollMoreStudents)
+                                </label>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Add Course" class="btn btn-success" />
+                                <input type="submit" asp-action="GetAllCourses" value="Close" class="btn btn-danger" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+               
+                </div>
+            </div>
+        </div>
+    }
+
+                
+
