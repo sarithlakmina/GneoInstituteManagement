@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using GneoBusinessLibrary.Queries.Teachers;
+using GneoBusinessLibrary.Teachers.Commands;
+using GneoBusinessLibrary.Teachers.Queries;
 using GneoCommonDataLibrary.Configurations;
+using GneoCommonDataLibrary.Models;
 using GneoCommonDataLibrary.ViewModels;
 using GneoDataAccessLibrary.DataAccess;
 using GneoWebAPI.Controllers.Definitions;
@@ -20,44 +22,41 @@ namespace GneoWebAPI.Controllers
         private readonly GneoDataContext _context;
         private readonly IMapper _mapper;
         private readonly GneoInstituteManagerConfigurations _snapshotOptions;
-
-
-        public TeacherController(IMediator mediator, IOptionsSnapshot<GneoInstituteManagerConfigurations> configuration,IMapper mapper)
+        public TeacherController(IMediator mediator, IOptionsSnapshot<GneoInstituteManagerConfigurations> configuration, IMapper mapper, GneoDataContext context)
             : base(mediator, configuration)
         {
             this._mapper = mapper;
-            _snapshotOptions = configuration.Value;
+            this._snapshotOptions = configuration.Value;
+            this._context = context;
         }
 
         [HttpGet]
         [Route("all")]
         public async Task<IActionResult> GetAllTeachers()
         {
-            var result = await mediator.Send(new GetAllTeachersQuery());
-            var res=result.TeachersList;
-
-            var teacherViewModel = _mapper.Map<TeacherViewModel>(res);
-
-            return Ok(teacherViewModel);
-        }
-
-        public async Task<IActionResult> AddEditTeacher(int id = 0)
-        {
-            if (id == 0)
+            try
             {
+                var result = await mediator.Send(new GetAllTeachersQuery());
+                return Ok(result.TeachersList);
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
+        }
+        [HttpPost]
+        [Route("enroll")]
+        public async Task<IActionResult> InsertTeacher(Teacher value)
+        {
+            try
+            {
+                var result = await mediator.Send(new InsertTeacherCommand(value.FirstName,value.LastName));               
                 return Ok();
             }
-            else
+            catch (Exception)
             {
-                var AddEditTeacherModel = await _context.Teachers.FindAsync(id);
-                if (AddEditTeacherModel == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(AddEditTeacherModel);
+                return NoContent();
             }
-
         }
     }
 }

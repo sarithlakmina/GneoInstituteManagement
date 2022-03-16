@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GneoInstituteManagerWebApp.ViewModels.TeacherViewModel>
+
+@{
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2" style="padding-top:50px;">
+                <h1 class="text-center accent-gray">Students Details</h1>
+                <p>
+
+                    <a asp-action="AddEdiTeacher" class="btn btn-success"><i class="fas fa-random"></i> Add New Teacher</a>
+                </p>
+                <table class="table table-dark table-hover" style="padding-top:20px;">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TeacherID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FullName)
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TeacherID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FullName)
+                                </td>
+                                <td>
+                                    <a asp-action="AddEditTeacher" class="btn btn-default">Edit</a>
+                                    <a asp-action="DeleteTeacher" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    }

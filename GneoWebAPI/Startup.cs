@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using System.Reflection;
-using GneoBusinessLibrary.Queries.Teachers;
+using GneoBusinessLibrary;
 
 namespace GneoWebAPI
 {
@@ -28,7 +28,7 @@ namespace GneoWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(GetAllTeachersQuery).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(GneoMediatREntryPoint).Assembly);
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllersWithViews();

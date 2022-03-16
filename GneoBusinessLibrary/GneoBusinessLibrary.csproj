@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <Compile Remove="Commands\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <None Remove="Commands\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +18,11 @@
   <ItemGroup>
     <ProjectReference Include="..\GneoCommonDataLibrary\GneoCommonDataLibrary.csproj" />
     <ProjectReference Include="..\GneoDataAccessLibrary\GneoDataAccessLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Courses\Commands\" />
+    <Folder Include="Students\Commands\" />
   </ItemGroup>
 
 </Project>

@@ -15,6 +15,8 @@ namespace GneoDataAccessLibrary.DataAccess
         public  DbSet<Course> Courses { get; set; }
         public  DbSet<Teacher> Teachers { get; set; }
 
+        
+
         public Task<List<Course>> GetAllCourses()
            => Courses.Where(c => !c.IsDeleted).OrderBy(c => c.Title).AsNoTracking().ToListAsync();
 
@@ -23,5 +25,35 @@ namespace GneoDataAccessLibrary.DataAccess
 
         public Task<List<Student>> GetAllStudents()
           => Students.Where(c => !c.IsDeleted).OrderBy(c => c.StudentID).AsNoTracking().ToListAsync();
+
+        public Task<List<Teacher>> GetRegisteredTeachers() 
+        {
+            return Teachers.ToListAsync();
+        }
+
+        public Teacher InsertTeacher(string firstName, string lastName)
+        {
+            Teacher oTeacher = new() { FirstName = firstName, LastName = lastName };
+            Teachers.Add(oTeacher);
+            return oTeacher;
+
+        }
+
+        public Student InsertStudent(string firstName, string lastName)
+        {
+            Student oStudent = new() { FirstName = firstName, LastName = lastName };
+            Students.Add(oStudent);
+            return oStudent;
+
+        }
+
+        public Course InsertCourse(string description, string subject)
+        {
+            Course oCourse = new() { Description = description, Subject = subject };
+            Courses.Add(oCourse);
+            return oCourse;
+
+        }
+
     }
 }

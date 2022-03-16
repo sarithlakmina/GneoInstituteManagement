@@ -1,6 +1,12 @@
-﻿using GneoDataAccessLibrary.DataAccess;
+﻿using AutoMapper;
+using GneoBusinessLibrary.Students.Queries;
+using GneoCommonDataLibrary.Configurations;
+using GneoDataAccessLibrary.DataAccess;
+using GneoWebAPI.Controllers.Definitions;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,43 +14,44 @@ using System.Threading.Tasks;
 
 namespace GneoWebAPI.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
         private readonly GneoDataContext _context;
+        private readonly IMapper _mapper;
+        private readonly GneoInstituteManagerConfigurations _snapshotOptions;
 
-        public StudentController(GneoDataContext context)
+       
+
+        public StudentController(IMediator mediator, IOptionsSnapshot<GneoInstituteManagerConfigurations> configuration, IMapper mapper, GneoDataContext context)
+           : base(mediator, configuration)
         {
+            this._mapper = mapper;
+            this._snapshotOptions = configuration.Value;
             this._context = context;
         }
+
+        [HttpGet]
+        [Route("all")]
         public async Task<IActionResult> GetAllStudents()
         {
-           // var result = _context.Students.ToList();
-            //return View(result);
-
-            
-            return View(await _context.Students.ToListAsync());
+            try
+            {
+                var result = await mediator.Send(new GetAllStudentsQuery());
+                return Ok(result.StudentsList);
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
 
         }
 
         //GET : Students/AddEditStudent
         //GET : Students/AddEditStudent/5
-        public async Task<IActionResult> AddEditStudent(int id=0)
+       /* public async Task<IActionResult> AddEditStudent(int id=0)
         {
-            if(id==0)
-            {
-                return View();
-            }
-            else
-            {
-                var AddEditStudentModel = await _context.Students.FindAsync(id);
-                if(AddEditStudentModel ==null)
-                {
-                    return NotFound();
-                }
-
-                return View(AddEditStudentModel);
-            }
            
-        }
+           
+        }*/
     }
 }
