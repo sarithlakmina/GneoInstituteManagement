@@ -20,9 +20,4 @@
     <ProjectReference Include="..\GneoDataAccessLibrary\GneoDataAccessLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Courses\Commands\" />
-    <Folder Include="Students\Commands\" />
-  </ItemGroup>
-
 </Project>

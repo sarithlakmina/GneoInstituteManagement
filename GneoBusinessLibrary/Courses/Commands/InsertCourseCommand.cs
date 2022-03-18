@@ -9,15 +9,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GneoBusinessLibrary.Courses.Queries
+namespace GneoBusinessLibrary.Courses.Commands
 {
-    public class GetAllCoursesQuery : IRequest<GetAllCoursesQueryResult>
-    {
-    }
-
-    public class GetAllCoursesQueryResult
-    {
-        public List<Course> CoursesList { get; set; }
-    }
-
+    public record InsertCourseCommand(string CourseID, string StudentID) : IRequest<Course> { }
+}
 }
