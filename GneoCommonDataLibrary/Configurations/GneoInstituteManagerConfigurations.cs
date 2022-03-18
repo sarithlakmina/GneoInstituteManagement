@@ -9,5 +9,6 @@
     {
         public string Author { get; set; }
         public string HardestChallenge { get; set; }
+
     }
 }

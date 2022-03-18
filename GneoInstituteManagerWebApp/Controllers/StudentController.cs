@@ -11,16 +11,16 @@ namespace GneoInstituteManagerWebApp.Controllers
 {
     public class StudentController : Controller
     {
-        Uri baseAddress = new Uri("https://localhost:44390/api");
         HttpClient client;
 
-        public StudentController()
+        public StudentController(string strURL)
         {
+            Uri baseAddress = new Uri(strURL);
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
 
-        
+
         public IActionResult All()
         {
             List<StudentViewModel> courseList = new List<StudentViewModel>();

@@ -1,4 +1,5 @@
-﻿using GneoInstituteManagerWebApp.ViewModels;
+﻿using GneoCommonDataLibrary.Configurations;
+using GneoInstituteManagerWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,11 +12,11 @@ namespace GneoInstituteManagerWebApp.Controllers
 {
     public class CourseController : Controller
     {
-        Uri baseAddress = new Uri("https://localhost:44390/api");
         HttpClient client;
 
-        public CourseController()
+        public CourseController(string strURL)
         {
+            Uri baseAddress = new Uri(strURL);
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
@@ -34,5 +35,7 @@ namespace GneoInstituteManagerWebApp.Controllers
             }
             return View(courseList);
         }
+
+      
     }
 }

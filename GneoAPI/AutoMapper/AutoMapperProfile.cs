@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GneoCommonDataLibrary.ViewModels;
 using GneoCommonDataLibrary.Models;
+using GneoCommonDataLibrary.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +11,11 @@ namespace GneoAPI.AutoMapper
     {
         public AutoMapperProfile()
         {
+
+            CreateMap<Course, CourseViewModel>()
+                .ForMember(c => c.TeacherFullName, o => o.MapFrom(c => $"{c.Teacher.FirstName} {c.Teacher.LastName}"))
+                .ForMember(c => c.CurrentStudentCount, o => o.MapFrom(c => c.Students.Count))
+                .ForMember(c => c.CanEnrollMoreStudents, o => o.Ignore());
             CreateMap<Teacher, TeacherViewModel>()
                 .ForMember(c => c.FullName, o => o.MapFrom(c => $"{c.FirstName} {c.LastName}"))
                 ;

@@ -4,7 +4,6 @@ using GneoBusinessLibrary.Teachers.Commands;
 using GneoBusinessLibrary.Teachers.Queries;
 using GneoCommonDataLibrary.Configurations;
 using GneoCommonDataLibrary.Models;
-using GneoCommonDataLibrary.ViewModels;
 using GneoDataAccessLibrary.DataAccess;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

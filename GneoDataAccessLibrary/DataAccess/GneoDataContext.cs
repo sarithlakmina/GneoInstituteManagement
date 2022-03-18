@@ -26,7 +26,7 @@ namespace GneoDataAccessLibrary.DataAccess
         public Task<List<Student>> GetAllStudents()
           => Students.Where(c => !c.IsDeleted).OrderBy(c => c.StudentID).AsNoTracking().ToListAsync();
 
-        public Task<List<Teacher>> GetRegisteredTeachers() 
+        public Task<List<Teacher>> GetRegisteredTeachers()
         {
             return Teachers.ToListAsync();
         }
@@ -54,6 +54,7 @@ namespace GneoDataAccessLibrary.DataAccess
             return oCourse;
 
         }
+
 
     }
 }

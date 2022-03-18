@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GneoBusinessLibrary.Teachers.Queries;
-using GneoCommonDataLibrary.ViewModels;
+using GneoCommonDataLibrary.Models;
 using GneoDataAccessLibrary.DataAccess;
 using MediatR;
 using System;
@@ -28,7 +28,7 @@ namespace GneoBusinessLibrary.Teachers.Handlers
 
             return new GetAllTeachersQueryResult
             {
-                TeachersList = mapper.Map<List<TeacherViewModel>>(teachers)
+                TeachersList = mapper.Map<List<Teacher>>(teachers)
             };
         }
     }

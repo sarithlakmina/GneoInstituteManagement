@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using GneoCommonDataLibrary.Models;
-using GneoCommonDataLibrary.ViewModels;
 using GneoDataAccessLibrary.DataAccess;
 using MediatR;
 using System;
@@ -18,7 +17,7 @@ namespace GneoBusinessLibrary.Students.Queries
 
     public class GetAllStudentsQueryResult
     {
-        public List<StudentViewModel> StudentsList { get; set; }
+        public List<Student> StudentsList { get; set; }
     }
 
     public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, GetAllStudentsQueryResult>
@@ -37,7 +36,7 @@ namespace GneoBusinessLibrary.Students.Queries
 
             return new GetAllStudentsQueryResult
             {
-                StudentsList = mapper.Map<List<StudentViewModel>>(students)
+                StudentsList = mapper.Map<List<Student>>(students)
             };
         }
     }

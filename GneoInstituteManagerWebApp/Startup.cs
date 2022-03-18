@@ -1,3 +1,4 @@
+using GneoCommonDataLibrary.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,8 @@ namespace GneoInstituteManagerWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+             var APIUrl = Configuration.GetValue<string>("APIUrl");
+             services.AddSingleton(APIUrl);        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

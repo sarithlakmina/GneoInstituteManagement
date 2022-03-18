@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,13 @@ namespace GneoCommonDataLibrary.Models
         public Guid CourseID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        [Required]
+        [MaxLength(65)]
+
         public string TeacherFullName { get; set; }
+        [Required]
+        [MaxLength(30)]
+
         public string Subject { get; set; }
         public int CurrentStudentCount { get; set; }
         public int MaximumStudentLimit { get; set; }
@@ -19,7 +26,10 @@ namespace GneoCommonDataLibrary.Models
         public bool IsDeleted { get; set; } = false;
 
         public virtual Teacher Teacher { get; set; }
-        public List<Student> Students { get; set; } = new List<Student>();
+        public virtual ICollection<Student> Students { get; set; } = new List<Student>();
+
+        public Guid TeacherID { get; set; }
+      
 
     }
 }

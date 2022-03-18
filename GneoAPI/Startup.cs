@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GneoCommonDataLibrary.Configurations;
 
 namespace GneoAPI
 {
@@ -33,15 +34,18 @@ namespace GneoAPI
             services.AddMediatR(typeof(GneoMediatREntryPoint).Assembly);
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "GneoAPI", Version = "v1" });
-            //});
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GneoAPI", Version = "v1" });
+            });
             services.AddDbContext<GneoDataContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
+            var cnfg = new GneoInstituteManagerConfigurations();
+            Configuration.GetSection("Info").Bind(cnfg);
+            services.AddSingleton(cnfg);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,12 +57,16 @@ namespace GneoAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GneoAPI v1"));
             }
+            app.UseExceptionHandler("/Error");
 
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {

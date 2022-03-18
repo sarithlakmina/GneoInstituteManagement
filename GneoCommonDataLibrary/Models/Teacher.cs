@@ -16,9 +16,8 @@ namespace GneoCommonDataLibrary.Models
         [Required]
         [MaxLength(30)]
         public string LastName { get; set; }
-        public string FullName { get; set; }
         [Required]
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public string GetFullName => $"{FirstName} {LastName}";
     }
