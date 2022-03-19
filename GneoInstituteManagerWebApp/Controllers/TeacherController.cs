@@ -24,7 +24,7 @@ namespace GneoInstituteManagerWebApp.Controllers
         public IActionResult All()
         {
             List<TeacherViewModel> teacherList = new List<TeacherViewModel>();
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Teacher/all").Result;
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Teacher/all").Result;
 
 
             if (response.IsSuccessStatusCode)

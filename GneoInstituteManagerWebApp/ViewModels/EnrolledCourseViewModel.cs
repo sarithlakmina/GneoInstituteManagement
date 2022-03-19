@@ -7,8 +7,9 @@ namespace GneoInstituteManagerWebApp.ViewModels
 {
     public class EnrolledCourseViewModel
     {
-        public List<Guid> CourseID { get; set; }
+        public Guid ID { get; set; }
+        public Guid CourseID { get; set; }
 
-        public List<Guid> StudentID { get; set; }
+        public Guid StudentID { get; set; }
     }
 }

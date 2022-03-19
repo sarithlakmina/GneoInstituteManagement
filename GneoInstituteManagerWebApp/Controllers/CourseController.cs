@@ -1,5 +1,4 @@
-﻿using GneoCommonDataLibrary.Configurations;
-using GneoInstituteManagerWebApp.ViewModels;
+﻿using GneoInstituteManagerWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -25,7 +24,7 @@ namespace GneoInstituteManagerWebApp.Controllers
         public IActionResult All()
         {
             List<CourseViewModel> courseList = new List<CourseViewModel>();
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Course/all").Result;
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Course/all").Result;
 
 
             if (response.IsSuccessStatusCode)
@@ -44,13 +43,14 @@ namespace GneoInstituteManagerWebApp.Controllers
         [HttpPost]
         public IActionResult Enroll(EnrolledCourseViewModel enrolledCourseViewModel)
         {
-            var postTask = client.PostAsJsonAsync<EnrolledCourseViewModel>(client.BaseAddress + "/Course/enroll", enrolledCourseViewModel);
+            var clienturl = client.BaseAddress + "api/Course/enroll";
+            var postTask = client.PostAsJsonAsync<EnrolledCourseViewModel>(clienturl, enrolledCourseViewModel);
             postTask.Wait();
 
             var result = postTask.Result;
             if (result.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index/all");
+                return RedirectToAction("all");
             }
 
             return View();

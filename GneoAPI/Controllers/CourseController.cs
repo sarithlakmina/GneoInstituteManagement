@@ -54,17 +54,35 @@ namespace GneoAPI.Controllers
 
         [HttpPost]
         [Route("enroll")]
-        public async Task<IActionResult> Enroll(EnrollCourse value)
+        public async Task<IActionResult> Enroll([FromBody]EnrollCourse value)
         {
             try
             {
-                var result = await mediator.Send(new InsertCourseCommand(value.CourseID, value.StudentID));
+                var result = await mediator.Send(new InsertCourseCommand(value.ID, value.CourseID, value.StudentID));
                 return Ok();
             }
             catch (Exception)
             {
                 return NoContent();
             }
+        }
+
+        [HttpGet]
+        [Route("enrolled")]
+        public async Task<IActionResult> enrolled()
+        {
+
+            try
+            {
+                var result = await mediator.Send(new GetAllEnrolledCoursesQuery());
+
+                return Ok(result.EnrolledCoursesList);
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
+
         }
 
     }

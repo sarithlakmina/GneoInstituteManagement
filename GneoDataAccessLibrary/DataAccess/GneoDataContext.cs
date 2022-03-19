@@ -33,6 +33,11 @@ namespace GneoDataAccessLibrary.DataAccess
             return Teachers.ToListAsync();
         }
 
+        public Task<List<EnrollCourse>> GetEnrollCourses()
+        {
+            return EnrollCourses.ToListAsync();
+        }
+
         public Teacher InsertTeacher(string firstName, string lastName)
         {
             Teacher oTeacher = new() { FirstName = firstName, LastName = lastName };
@@ -49,9 +54,9 @@ namespace GneoDataAccessLibrary.DataAccess
 
         }
 
-        public EnrollCourse InsertCourse(Guid courseId, Guid studentId)
+        public EnrollCourse InsertCourse(Guid id, Guid courseId, Guid studentId)
         {
-            EnrollCourse oCourse = new() { CourseID = courseId, StudentID = studentId };
+            EnrollCourse oCourse = new() {ID=id, CourseID = courseId, StudentID = studentId };
             EnrollCourses.Add(oCourse);
             return oCourse;
 
