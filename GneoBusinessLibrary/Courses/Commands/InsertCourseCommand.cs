@@ -11,6 +11,6 @@ using System.Threading.Tasks;
 
 namespace GneoBusinessLibrary.Courses.Commands
 {
-    public record InsertCourseCommand(string CourseID, string StudentID) : IRequest<Course> { }
+    public record InsertCourseCommand(Guid CourseID, Guid StudentID) : IRequest<EnrollCourse> { }
 }
-}
+

@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GneoCommonDataLibrary.Models;
+using GneoBusinessLibrary.Courses.Commands;
 
 namespace GneoAPI.Controllers
 {
@@ -50,6 +52,20 @@ namespace GneoAPI.Controllers
 
         }
 
-        
+        [HttpPost]
+        [Route("enroll")]
+        public async Task<IActionResult> Enroll(EnrollCourse value)
+        {
+            try
+            {
+                var result = await mediator.Send(new InsertCourseCommand(value.CourseID, value.StudentID));
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
+        }
+
     }
 }

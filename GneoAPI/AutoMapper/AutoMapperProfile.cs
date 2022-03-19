@@ -22,6 +22,9 @@ namespace GneoAPI.AutoMapper
             CreateMap<Student, StudentViewModel>()
                 .ForMember(c => c.FullName, o => o.MapFrom(c => $"{c.FirstName} {c.LastName}"))
                 ;
+            CreateMap<Teacher, Course>()
+                .ForMember(t => t.TeacherID, o => o.MapFrom(c => c.TeacherID))
+                ;
         }
     }
 }

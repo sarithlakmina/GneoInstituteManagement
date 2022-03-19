@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GneoBusinessLibrary.Courses.Handlers
 {
-    public class InsertCourseHandler : IRequestHandler<InsertCourseCommand, Course>
+    public class InsertCourseHandler : IRequestHandler<InsertCourseCommand, EnrollCourse>
     {
         public GneoDataContext Context;
         private readonly IMapper mapper;
@@ -20,11 +20,10 @@ namespace GneoBusinessLibrary.Courses.Handlers
         public InsertCourseHandler(GneoDataContext _context, IMapper _mapper)
         {
             Context = _context;
+            mapper = _mapper;
         }
 
-       
-
-        public Task<Course> Handle(InsertCourseCommand request, CancellationToken cancellationToken)
+        public Task<EnrollCourse> Handle(InsertCourseCommand request, CancellationToken cancellationToken)
         {
             return Task.FromResult(Context.InsertCourse(request.CourseID, request.StudentID));
         }

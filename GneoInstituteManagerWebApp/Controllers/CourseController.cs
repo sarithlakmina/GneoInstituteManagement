@@ -36,6 +36,27 @@ namespace GneoInstituteManagerWebApp.Controllers
             return View(courseList);
         }
 
-      
+        public IActionResult Enroll()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Enroll(EnrolledCourseViewModel enrolledCourseViewModel)
+        {
+            var postTask = client.PostAsJsonAsync<EnrolledCourseViewModel>(client.BaseAddress + "/Course/enroll", enrolledCourseViewModel);
+            postTask.Wait();
+
+            var result = postTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index/all");
+            }
+
+            return View();
+        }
+       
+
+
     }
 }

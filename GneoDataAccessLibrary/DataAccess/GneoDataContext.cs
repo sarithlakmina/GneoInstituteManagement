@@ -15,6 +15,8 @@ namespace GneoDataAccessLibrary.DataAccess
         public  DbSet<Course> Courses { get; set; }
         public  DbSet<Teacher> Teachers { get; set; }
 
+        public DbSet<EnrollCourse> EnrollCourses { get; set; }
+
         
 
         public Task<List<Course>> GetAllCourses()
@@ -47,13 +49,18 @@ namespace GneoDataAccessLibrary.DataAccess
 
         }
 
-        public Course InsertCourse(string description, string subject)
+        public EnrollCourse InsertCourse(Guid courseId, Guid studentId)
         {
-            Course oCourse = new() { Description = description, Subject = subject };
-            Courses.Add(oCourse);
+            EnrollCourse oCourse = new() { CourseID = courseId, StudentID = studentId };
+            EnrollCourses.Add(oCourse);
             return oCourse;
 
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+           
+        //}
 
 
     }

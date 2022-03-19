@@ -38,7 +38,7 @@ namespace GneoAPI.Controllers
             try
             {
                 var result = await mediator.Send(new GetAllTeachersQuery());
-                return Ok(result.StudentsList);
+                return Ok(result.TeachersList);
             }
             catch (Exception)
             {

@@ -72,6 +72,8 @@ namespace GneoAPI
             {
                 endpoints.MapControllers();
             });
+
+            AppDbInitializer.Seed(app);
         }
     }
 }
