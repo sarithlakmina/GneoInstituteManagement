@@ -45,7 +45,7 @@ namespace GneoInstituteManagerWebApp.Controllers
 
         public IActionResult Enroll()
         {
-           List<Cou>
+           
             return View();
         }
 
