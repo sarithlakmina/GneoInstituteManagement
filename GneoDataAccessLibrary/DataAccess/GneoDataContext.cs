@@ -1,4 +1,5 @@
 ﻿using GneoCommonDataLibrary.Models;
+using GneoCommonDataLibrary.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,20 +29,19 @@ namespace GneoDataAccessLibrary.DataAccess
         public Task<List<Student>> GetAllStudents()
           => Students.Where(c => !c.IsDeleted).OrderBy(c => c.StudentID).AsNoTracking().ToListAsync();
 
-        public Task<List<Teacher>> GetRegisteredTeachers()
-        {
-            return Teachers.ToListAsync();
-        }
-
+        public Task<List<Teacher>> GetRegisteredTeachers()        
+          => Teachers.ToListAsync();
+        
         public Task<List<EnrollCourse>> GetEnrollCourses()
-        {
-            return EnrollCourses.ToListAsync();
-        }
+            => EnrollCourses.ToListAsync();
+        
 
-        public Teacher InsertTeacher(string firstName, string lastName)
+        public Teacher InsertTeacher(Guid teacherid,string firstName, string lastName,bool isdeleted)
         {
-            Teacher oTeacher = new() { FirstName = firstName, LastName = lastName };
+            Teacher oTeacher = new() {TeacherID=teacherid ,FirstName = firstName, LastName = lastName,IsDeleted=false };
             Teachers.Add(oTeacher);
+            SaveChangesAsync();
+
             return oTeacher;
 
         }
@@ -50,14 +50,16 @@ namespace GneoDataAccessLibrary.DataAccess
         {
             Student oStudent = new() { FirstName = firstName, LastName = lastName };
             Students.Add(oStudent);
+            SaveChangesAsync();
             return oStudent;
 
         }
 
-        public EnrollCourse InsertCourse(Guid id, Guid courseId, Guid studentId)
+        public EnrollCourse InsertCourse(Guid courseId, Guid studentId)
         {
-            EnrollCourse oCourse = new() {ID=id, CourseID = courseId, StudentID = studentId };
+            EnrollCourse oCourse = new() {CourseID = courseId, StudentID = studentId };
             EnrollCourses.Add(oCourse);
+            SaveChangesAsync();
             return oCourse;
 
         }

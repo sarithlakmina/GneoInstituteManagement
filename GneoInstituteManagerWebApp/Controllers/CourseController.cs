@@ -23,20 +23,29 @@ namespace GneoInstituteManagerWebApp.Controllers
 
         public IActionResult All()
         {
-            List<CourseViewModel> courseList = new List<CourseViewModel>();
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Course/all").Result;
-
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                courseList = JsonConvert.DeserializeObject<List<CourseViewModel>>(data);
+                List<CourseViewModel> courseList = new List<CourseViewModel>();
+                HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Course/all").Result;
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    courseList = JsonConvert.DeserializeObject<List<CourseViewModel>>(data);
+                }
+                return View(courseList);
             }
-            return View(courseList);
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public IActionResult Enroll()
         {
+           List<Cou>
             return View();
         }
 

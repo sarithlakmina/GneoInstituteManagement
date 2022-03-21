@@ -9,11 +9,13 @@ namespace GneoCommonDataLibrary.Models
 {
     public class EnrollCourse
     {
-        public Guid ID { get; set; }
+        [Key]
+        [Required]
+        public Guid StudentID { get; set; }
 
         [Required]
         public Guid CourseID { get; set; }
-        [Required]
-        public Guid StudentID { get; set; }
+
+
     }
 }

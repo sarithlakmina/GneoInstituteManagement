@@ -47,12 +47,12 @@ namespace GneoAPI.Controllers
         }
         [HttpPost]
         [Route("enroll")]
-        public async Task<IActionResult> InsertTeacher(Teacher value)
+        public async Task<IActionResult> InsertTeacher([Bind("FirstName,LastName,IsDeleted=false")] Teacher value)
         {
             try
             {
-                var result = await mediator.Send(new InsertTeacherCommand(value.FirstName,value.LastName));               
-                return Ok();
+                var result = await mediator.Send(new InsertTeacherCommand(value.TeacherID,value.FirstName,value.LastName,false));               
+                return Ok(result.TeacherID);
             }
             catch (Exception)
             {

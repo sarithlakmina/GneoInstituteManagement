@@ -24,7 +24,6 @@ namespace GneoCommonDataLibrary.Models
         [Column(TypeName="varchar(200)")]
         public string Email { get; set; }
         public DateTimeOffset Birthdate { get; set; }
-        public List<Course> CourseofStudent { get; set; } = new List<Course>();
         public bool IsDeleted { get; set; }
 
         [Required]
@@ -32,5 +31,7 @@ namespace GneoCommonDataLibrary.Models
         [Column(TypeName = "varchar(12)")]
         public string NICNo { get; set; }
         public string GetFullName => $"{FirstName} {LastName}";
+
+        public virtual Course Courses { get; set; }
     }
 }

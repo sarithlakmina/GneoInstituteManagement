@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GneoBusinessLibrary.Students.Queries;
 using GneoBusinessLibrary.Teachers.Queries;
+using GneoCommonDataLibrary.Models;
 using GneoCommonDataLibrary.ViewModels;
 using GneoDataAccessLibrary.DataAccess;
 using MediatR;

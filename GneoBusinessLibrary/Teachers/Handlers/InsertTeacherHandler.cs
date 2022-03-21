@@ -23,7 +23,7 @@ namespace GneoBusinessLibrary.Teachers.Handlers
         }
         public Task<Teacher> Handle(InsertTeacherCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(Context.InsertTeacher(request.FirstName, request.LastName));
+            return Task.FromResult(Context.InsertTeacher(request.TeacherId,request.FirstName, request.LastName,false));
         }
     }
 }

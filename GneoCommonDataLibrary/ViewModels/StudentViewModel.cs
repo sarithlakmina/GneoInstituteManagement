@@ -13,6 +13,6 @@ namespace GneoCommonDataLibrary.ViewModels
         public string FullName { get; set; }
         
         [Display(Name = "Course ID")]
-        public string CourseID { get; set; }
+        public Guid CourseID { get; set; }
     }
 }

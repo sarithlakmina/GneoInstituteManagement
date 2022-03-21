@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace GneoBusinessLibrary.Teachers.Commands
 {
 
-    public record InsertTeacherCommand(string FirstName, string LastName) : IRequest<Teacher> { }
+    public record InsertTeacherCommand(Guid TeacherId, string FirstName, string LastName, bool isDeleted) : IRequest<Teacher> { }
 
     //public class InsertTeacherCommand :IRequest<Teacher>
     //{

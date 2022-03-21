@@ -22,13 +22,15 @@ namespace GneoCommonDataLibrary.Models
         public string Subject { get; set; }
         public int CurrentStudentCount { get; set; }
         public int MaximumStudentLimit { get; set; }
-        public bool CanEnrollMoreStudents => MaximumStudentLimit <= CurrentStudentCount;
+        public bool CanEnrollMoreStudents => MaximumStudentLimit >= CurrentStudentCount;
         public bool IsDeleted { get; set; } = false;
+        public Guid TeacherID { get; set; }
 
-        public virtual Teacher Teacher { get; set; }
+
+        public virtual Teacher Teacher { get; set; } = new Teacher();
         public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 
-        public Guid TeacherID { get; set; }
+        
       
 
     }

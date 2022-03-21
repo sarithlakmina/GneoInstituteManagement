@@ -58,8 +58,8 @@ namespace GneoAPI.Controllers
         {
             try
             {
-                var result = await mediator.Send(new InsertCourseCommand(value.ID, value.CourseID, value.StudentID));
-                return Ok();
+                var result = await mediator.Send(new InsertCourseCommand(value.CourseID, value.StudentID));
+                return Ok(result.CourseID);
             }
             catch (Exception)
             {
