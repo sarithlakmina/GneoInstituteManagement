@@ -7,8 +7,9 @@
 
     public class InfoConfig
     {
-        public string Author { get; set; }
-        public string HardestChallenge { get; set; }
+        public const string Position = "Info";
+        public static string Author { get; set; } 
+        public static string HardestChallenge { get; set; } 
 
     }
 }

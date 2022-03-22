@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GneoBusinessLibrary.Students.Commands;
+using GneoCommonDataLibrary.Models;
 
 namespace GneoAPI.Controllers
 {
@@ -47,20 +49,21 @@ namespace GneoAPI.Controllers
 
         }
 
-        //[HttpPut("{id}")]
-        //[Route("delete")]
-        //public async Task<IActionResult> DeleteStudent(int id, bool isDeleted)
-        //{
-        //    try
-        //    {
-        //        var result = await mediator.Send(new GetAllStudentsQuery());
-        //        return Ok();
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        return NoContent();
-        //    }
-        //}
+      
+        [HttpPut("{id}")]       
+        public async Task<IActionResult> Update([FromBody]DeleteStudent command)
+        {
+            try
+            {
+                var result = await mediator.Send(new DeleteStudentCommand(command.IDList));
+                return Ok();
+            }
+            catch 
+            {
+                return NoContent();
+            }
+            
+           
+        }
     }
 }

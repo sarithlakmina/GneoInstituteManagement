@@ -20,10 +20,15 @@ namespace GneoAPI.Controllers
         { }
 
         [HttpGet]
-        [Route("")]
-        public InfoConfig Get()
-            => 
-            configuration.Value.Info;
+        [Route("info")]
+        public ContentResult Get() 
+        {
+            //return configuration.Value.Info;
+            //var c = new InfoConfig();
+            return Content($"Author: {InfoConfig.Author} \n" +
+                      $"Name: {InfoConfig.HardestChallenge}");
+        }
+        
     }
 }
 

@@ -20,6 +20,8 @@ namespace GneoDataAccessLibrary.DataAccess
 
         
 
+        
+
         public Task<List<Course>> GetAllCourses()
            => Courses.Where(c => !c.IsDeleted).OrderBy(c => c.Title).AsNoTracking().ToListAsync();
 
@@ -69,10 +71,25 @@ namespace GneoDataAccessLibrary.DataAccess
 
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-           
-        //}
+        public DeleteStudent DeleteStudent(string ids)
+        {
+            DeleteStudent oDelStudent = new() { IDList = ids };
+
+            var delStd = Students.Where(a => a.StudentID.ToString() == "9951573b-d3e5-42fb-ae15-0170d4bf2eb9").FirstOrDefault();
+
+          
+            if(delStd == null)
+            {
+                return default;
+            }
+            else
+            {
+                delStd.IsDeleted = true;
+                SaveChangesAsync();
+                return oDelStudent;
+            }
+
+        }
 
 
     }

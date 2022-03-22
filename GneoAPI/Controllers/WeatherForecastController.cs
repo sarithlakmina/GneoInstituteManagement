@@ -22,10 +22,10 @@ namespace GneoAPI.Controllers
 
         }
 
-        [HttpGet]
-        public string Get()
-        {
-            return configs.Author;
-        }
+        //[HttpGet]
+        //public string Get()
+        //{
+        //    return configs.Author;
+        //}
     }
 }

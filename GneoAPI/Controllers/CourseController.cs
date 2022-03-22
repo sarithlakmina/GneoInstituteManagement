@@ -75,9 +75,6 @@ namespace GneoAPI.Controllers
             try
             {
                 var t= await _context.GetCourseIds();
-
-                //var f=t.
-
                 var result = await mediator.Send(new GetAllEnrolledCoursesQuery());
 
                 return Ok(result.EnrolledCoursesList);

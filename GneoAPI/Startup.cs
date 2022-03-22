@@ -43,7 +43,7 @@ namespace GneoAPI
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
-            var cnfg = new GneoInstituteManagerConfigurations();
+            var cnfg = new InfoConfig();  
             Configuration.GetSection("Info").Bind(cnfg);
             services.AddSingleton(cnfg);
         }
