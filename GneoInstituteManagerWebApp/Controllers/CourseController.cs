@@ -37,15 +37,15 @@ namespace GneoInstituteManagerWebApp.Controllers
                 return View(courseList);
             }
             catch (Exception)
-            {
-
+            {                
                 throw;
             }
         }
 
         public IActionResult Enroll()
         {
-           
+            List<Guid> CourseIds = new List<Guid>();
+            ViewBag.CourseID =CourseIds;
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace GneoInstituteManagerWebApp.Controllers
             {
                 return RedirectToAction("all");
             }
-
+            ViewBag.CourseID = new List<Guid>();
             return View();
         }
        

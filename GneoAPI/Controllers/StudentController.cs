@@ -21,7 +21,7 @@ namespace GneoAPI.Controllers
         private readonly IMapper _mapper;
         private readonly GneoInstituteManagerConfigurations _snapshotOptions;
 
-       
+
 
         public StudentController(IMediator mediator, IOptionsSnapshot<GneoInstituteManagerConfigurations> configuration, IMapper mapper, GneoDataContext context)
            : base(mediator, configuration)
@@ -47,12 +47,20 @@ namespace GneoAPI.Controllers
 
         }
 
-        //GET : Students/AddEditStudent
-        //GET : Students/AddEditStudent/5
-       /* public async Task<IActionResult> AddEditStudent(int id=0)
-        {
-           
-           
-        }*/
+        //[HttpPut("{id}")]
+        //[Route("delete")]
+        //public async Task<IActionResult> DeleteStudent(int id, bool isDeleted)
+        //{
+        //    try
+        //    {
+        //        var result = await mediator.Send(new GetAllStudentsQuery());
+        //        return Ok();
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        return NoContent();
+        //    }
+        //}
     }
 }

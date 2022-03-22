@@ -47,7 +47,7 @@ namespace GneoAPI.Controllers
         }
         [HttpPost]
         [Route("enroll")]
-        public async Task<IActionResult> InsertTeacher([Bind("FirstName,LastName,IsDeleted=false")] Teacher value)
+        public async Task<IActionResult> InsertTeacher(Teacher value)
         {
             try
             {

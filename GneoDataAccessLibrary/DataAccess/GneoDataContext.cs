@@ -34,7 +34,12 @@ namespace GneoDataAccessLibrary.DataAccess
         
         public Task<List<EnrollCourse>> GetEnrollCourses()
             => EnrollCourses.ToListAsync();
-        
+
+
+        public Task<List<Guid>> GetCourseIds()
+         => Courses.Select(x => x.CourseID).ToListAsync();
+
+
 
         public Teacher InsertTeacher(Guid teacherid,string firstName, string lastName,bool isdeleted)
         {
