@@ -58,6 +58,7 @@ namespace GneoAPI.Controllers
         {
             try
             {
+                //GetCoursesIds();
                 var result = await mediator.Send(new InsertCourseCommand(value.CourseID, value.StudentID));
                 return Ok(result.CourseID);
             }
@@ -74,7 +75,7 @@ namespace GneoAPI.Controllers
 
             try
             {
-                var t= await _context.GetCourseIds();
+               
                 var result = await mediator.Send(new GetAllEnrolledCoursesQuery());
 
                 return Ok(result.EnrolledCoursesList);
@@ -85,6 +86,8 @@ namespace GneoAPI.Controllers
             }
 
         }
+
+       
 
     }
 }

@@ -5,6 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\20220323061145_InitialMigration.cs" />
+    <Compile Include="Migrations\20220323061145_InitialMigration.Designer.cs" />
+    <Compile Include="Migrations\20220323061344_AddStoredProcedure1.cs" />
+    <Compile Include="Migrations\20220323061344_AddStoredProcedure1.Designer.cs" />
+    <Compile Include="Migrations\20220323062637_AddGetAvailableCourses.cs" />
+    <Compile Include="Migrations\20220323062637_AddGetAvailableCourses.Designer.cs" />
+    <Compile Include="Migrations\20220323062923_AddGetAvailableStudents.cs" />
+    <Compile Include="Migrations\20220323062923_AddGetAvailableStudents.Designer.cs" />
+    <Compile Include="Migrations\20220323063607_AddGetAvailableCoursesList.cs" />
+    <Compile Include="Migrations\20220323063607_AddGetAvailableCoursesList.Designer.cs" />
+    <Compile Include="Migrations\GneoDataContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.15" />
   </ItemGroup>

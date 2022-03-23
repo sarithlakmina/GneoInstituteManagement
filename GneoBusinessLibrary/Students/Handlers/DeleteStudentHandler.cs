@@ -15,16 +15,11 @@ namespace GneoBusinessLibrary.Students.Handlers
     public class DeleteStudentHandler : IRequestHandler<DeleteStudentCommand, DeleteStudent>
     {
         public GneoDataContext Context;
-        private readonly IMapper mapper;
 
-        public DeleteStudentHandler(GneoDataContext _context, IMapper _mapper)
+        public DeleteStudentHandler(GneoDataContext _context)
         {
             Context = _context;
-        }       
-        
-
-        
-
+        }
         public Task<DeleteStudent> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
             return Task.FromResult(Context.DeleteStudent(request.idList));

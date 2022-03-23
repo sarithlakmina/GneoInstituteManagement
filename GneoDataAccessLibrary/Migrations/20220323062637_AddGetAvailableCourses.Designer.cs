@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GneoDataAccessLibrary.Migrations
 {
     [DbContext(typeof(GneoDataContext))]
-    [Migration("20220321140803_AddModelChanges")]
-    partial class AddModelChanges
+    [Migration("20220323062637_AddGetAvailableCourses")]
+    partial class AddGetAvailableCourses
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

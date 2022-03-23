@@ -15,9 +15,8 @@ namespace GneoBusinessLibrary.Teachers.Handlers
     public class InsertTeacherHandler : IRequestHandler<InsertTeacherCommand, Teacher> 
     {
         public GneoDataContext Context;
-        private readonly IMapper mapper;
 
-        public InsertTeacherHandler(GneoDataContext _context, IMapper _mapper)
+        public InsertTeacherHandler(GneoDataContext _context)
         {
             Context = _context;
         }

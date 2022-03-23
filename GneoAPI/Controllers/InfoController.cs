@@ -20,7 +20,7 @@ namespace GneoAPI.Controllers
         { }
 
         [HttpGet]
-        [Route("info")]
+        [Route("")]
         public ContentResult Get() 
         {
             //return configuration.Value.Info;

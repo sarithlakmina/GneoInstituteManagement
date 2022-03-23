@@ -12,19 +12,18 @@ using System.Threading.Tasks;
 
 namespace GneoBusinessLibrary.Students.Handlers
 {
-    public class InsertStudentHandler : IRequestHandler<InsertStudentCommand, Student>
+    public class InsertStudentHandler : IRequestHandler<InsertStudentCommand, CreateStudent>
     {
         public GneoDataContext Context;
-        private readonly IMapper mapper;
 
-        public InsertStudentHandler(GneoDataContext _context, IMapper _mapper)
+        public InsertStudentHandler(GneoDataContext _context)
         {
             Context = _context;
         }
         
-        public Task<Student> Handle(InsertStudentCommand request, CancellationToken cancellationToken)
+        Task<CreateStudent> IRequestHandler<InsertStudentCommand, CreateStudent>.Handle(InsertStudentCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(Context.InsertStudent(request.FirstName, request.LastName));
+            return Task.FromResult(Context.InsertStudent(request.createstudent));
         }
     }
 }

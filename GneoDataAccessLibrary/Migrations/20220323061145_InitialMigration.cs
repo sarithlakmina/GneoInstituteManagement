@@ -3,25 +3,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GneoDataAccessLibrary.Migrations
 {
-    public partial class InitialDbCreation : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "EnrollCourses",
                 columns: table => new
                 {
                     StudentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateofBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CourseID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.StudentID);
+                    table.PrimaryKey("PK_EnrollCourses", x => x.StudentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,9 +24,8 @@ namespace GneoDataAccessLibrary.Migrations
                 columns: table => new
                 {
                     TeacherID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -46,12 +40,12 @@ namespace GneoDataAccessLibrary.Migrations
                     CourseID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherFullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TeacherFullName = table.Column<string>(type: "nvarchar(65)", maxLength: 65, nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     CurrentStudentCount = table.Column<int>(type: "int", nullable: false),
                     MaximumStudentLimit = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    TeacherID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    TeacherID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,31 +55,32 @@ namespace GneoDataAccessLibrary.Migrations
                         column: x => x.TeacherID,
                         principalTable: "Teachers",
                         principalColumn: "TeacherID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseStudent",
+                name: "Students",
                 columns: table => new
                 {
-                    CourseofStudentCourseID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StudentsStudentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    StudentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RegistrationID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Email = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
+                    Birthdate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    NICNo = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
+                    CoursesCourseID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseStudent", x => new { x.CourseofStudentCourseID, x.StudentsStudentID });
+                    table.PrimaryKey("PK_Students", x => x.StudentID);
                     table.ForeignKey(
-                        name: "FK_CourseStudent_Courses_CourseofStudentCourseID",
-                        column: x => x.CourseofStudentCourseID,
+                        name: "FK_Students_Courses_CoursesCourseID",
+                        column: x => x.CoursesCourseID,
                         principalTable: "Courses",
                         principalColumn: "CourseID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CourseStudent_Students_StudentsStudentID",
-                        column: x => x.StudentsStudentID,
-                        principalTable: "Students",
-                        principalColumn: "StudentID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -94,21 +89,21 @@ namespace GneoDataAccessLibrary.Migrations
                 column: "TeacherID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseStudent_StudentsStudentID",
-                table: "CourseStudent",
-                column: "StudentsStudentID");
+                name: "IX_Students_CoursesCourseID",
+                table: "Students",
+                column: "CoursesCourseID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CourseStudent");
-
-            migrationBuilder.DropTable(
-                name: "Courses");
+                name: "EnrollCourses");
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

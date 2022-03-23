@@ -15,12 +15,10 @@ namespace GneoBusinessLibrary.Courses.Handlers
     public class InsertCourseHandler : IRequestHandler<InsertCourseCommand, EnrollCourse>
     {
         public GneoDataContext Context;
-        private readonly IMapper mapper;
 
         public InsertCourseHandler(GneoDataContext _context, IMapper _mapper)
         {
             Context = _context;
-            mapper = _mapper;
         }
 
         public Task<EnrollCourse> Handle(InsertCourseCommand request, CancellationToken cancellationToken)

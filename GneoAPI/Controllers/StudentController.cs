@@ -49,7 +49,22 @@ namespace GneoAPI.Controllers
 
         }
 
-      
+        [HttpPost]
+        [Route("create")]
+        public async Task<IActionResult> Create([FromBody] CreateStudent value)
+        {
+            try
+            {
+                var result = await mediator.Send(new InsertStudentCommand(new CreateStudent()));
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
+        }
+
+
         [HttpPut("{id}")]       
         public async Task<IActionResult> Update([FromBody]DeleteStudent command)
         {
@@ -61,8 +76,7 @@ namespace GneoAPI.Controllers
             catch 
             {
                 return NoContent();
-            }
-            
+            }          
            
         }
     }

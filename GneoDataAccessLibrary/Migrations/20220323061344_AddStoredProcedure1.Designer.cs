@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GneoDataAccessLibrary.Migrations
 {
     [DbContext(typeof(GneoDataContext))]
-    [Migration("20220310094709_AddModelValidation")]
-    partial class AddModelValidation
+    [Migration("20220323061344_AddStoredProcedure1")]
+    partial class AddStoredProcedure1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,21 +20,6 @@ namespace GneoDataAccessLibrary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.Property<Guid>("CourseofStudentCourseID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StudentsStudentID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CourseofStudentCourseID", "StudentsStudentID");
-
-                    b.HasIndex("StudentsStudentID");
-
-                    b.ToTable("CourseStudent");
-                });
 
             modelBuilder.Entity("GneoCommonDataLibrary.Models.Course", b =>
                 {
@@ -55,12 +40,16 @@ namespace GneoDataAccessLibrary.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("TeacherFullName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(65)
+                        .HasColumnType("nvarchar(65)");
 
-                    b.Property<Guid?>("TeacherID")
+                    b.Property<Guid>("TeacherID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
@@ -73,14 +62,31 @@ namespace GneoDataAccessLibrary.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("GneoCommonDataLibrary.Models.EnrollCourse", b =>
+                {
+                    b.Property<Guid>("StudentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("StudentID");
+
+                    b.ToTable("EnrollCourses");
+                });
+
             modelBuilder.Entity("GneoCommonDataLibrary.Models.Student", b =>
                 {
                     b.Property<Guid>("StudentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DateofBirth")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTimeOffset>("Birthdate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("CoursesCourseID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -92,9 +98,6 @@ namespace GneoDataAccessLibrary.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -103,7 +106,17 @@ namespace GneoDataAccessLibrary.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("NICNo")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)");
+
+                    b.Property<string>("RegistrationID")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("StudentID");
+
+                    b.HasIndex("CoursesCourseID");
 
                     b.ToTable("Students");
                 });
@@ -119,9 +132,6 @@ namespace GneoDataAccessLibrary.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -135,31 +145,29 @@ namespace GneoDataAccessLibrary.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("CourseStudent", b =>
+            modelBuilder.Entity("GneoCommonDataLibrary.Models.Course", b =>
                 {
-                    b.HasOne("GneoCommonDataLibrary.Models.Course", null)
+                    b.HasOne("GneoCommonDataLibrary.Models.Teacher", "Teacher")
                         .WithMany()
-                        .HasForeignKey("CourseofStudentCourseID")
+                        .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GneoCommonDataLibrary.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsStudentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("GneoCommonDataLibrary.Models.Student", b =>
+                {
+                    b.HasOne("GneoCommonDataLibrary.Models.Course", "Courses")
+                        .WithMany("Students")
+                        .HasForeignKey("CoursesCourseID");
+
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("GneoCommonDataLibrary.Models.Course", b =>
                 {
-                    b.HasOne("GneoCommonDataLibrary.Models.Teacher", null)
-                        .WithMany("CourseofTeacher")
-                        .HasForeignKey("TeacherID");
-                });
-
-            modelBuilder.Entity("GneoCommonDataLibrary.Models.Teacher", b =>
-                {
-                    b.Navigation("CourseofTeacher");
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

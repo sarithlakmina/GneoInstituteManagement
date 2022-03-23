@@ -1,22 +1,27 @@
 ﻿using GneoCommonDataLibrary.Models;
-using GneoCommonDataLibrary.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
+using GneoCommonDataLibrary.StoredProcedureModels;
 
 namespace GneoDataAccessLibrary.DataAccess
 {
     public class GneoDataContext:DbContext
     {
         public GneoDataContext(DbContextOptions options) : base(options) { }
-        public  DbSet<Student> Students { get; set; }
-        public  DbSet<Course> Courses { get; set; }
+        public  DbSet<Student> Students { get; set; }       
         public  DbSet<Teacher> Teachers { get; set; }
 
+        public DbSet<Course> Courses { get; set; }
+
         public DbSet<EnrollCourse> EnrollCourses { get; set; }
+
+       // public DbSet<GetAllCourseIDs> GetAllCourseIDs { get; set; }
+
+
 
         
 
@@ -38,10 +43,15 @@ namespace GneoDataAccessLibrary.DataAccess
             => EnrollCourses.ToListAsync();
 
 
-        public Task<List<Guid>> GetCourseIds()
-         => Courses.Select(x => x.CourseID).ToListAsync();
+        public Task<List<Course>> GetCourseIds()
+        {
+            return Courses.FromSqlRaw<Course>("spGetAllAvailableCourses").ToListAsync();
+        }
 
-
+        public Task<List<Student>> GetAllStudentIds()
+        {
+            return Students.FromSqlRaw<Student>("spGetAllAvailableStudents").ToListAsync();
+        }
 
         public Teacher InsertTeacher(Guid teacherid,string firstName, string lastName,bool isdeleted)
         {
@@ -53,18 +63,23 @@ namespace GneoDataAccessLibrary.DataAccess
 
         }
 
-        public Student InsertStudent(string firstName, string lastName)
+        // public CreateStudent InsertStudent(string FirstName, string LastName, DateTimeOffset Birthdate, string Email, string NIC, string RegistrationNumber)
+        public CreateStudent InsertStudent(CreateStudent crtStudent)
         {
-            Student oStudent = new() { FirstName = firstName, LastName = lastName };
+            Student oStudent = new() { FirstName = crtStudent.FirstName, LastName = crtStudent.LastName, Birthdate= crtStudent.Birthdate, Email= crtStudent.Email};
+            CreateStudent del = new CreateStudent();
+           // var delStd = Students.Where(a => a.StudentID.ToString() == studentId.ToString()).FirstOrDefault();
+
             Students.Add(oStudent);
             SaveChangesAsync();
-            return oStudent;
+            return del;
 
         }
 
         public EnrollCourse InsertCourse(Guid courseId, Guid studentId)
         {
-            EnrollCourse oCourse = new() {CourseID = courseId, StudentID = studentId };
+            EnrollCourse oCourse = new() {CourseID = courseId, StudentID = studentId };           
+
             EnrollCourses.Add(oCourse);
             SaveChangesAsync();
             return oCourse;
@@ -75,7 +90,7 @@ namespace GneoDataAccessLibrary.DataAccess
         {
             DeleteStudent oDelStudent = new() { IDList = ids };
 
-            var delStd = Students.Where(a => a.StudentID.ToString() == "9951573b-d3e5-42fb-ae15-0170d4bf2eb9").FirstOrDefault();
+            var delStd = Students.Where(a => a.StudentID.ToString() == ids.ToString()).FirstOrDefault();
 
           
             if(delStd == null)
@@ -90,6 +105,7 @@ namespace GneoDataAccessLibrary.DataAccess
             }
 
         }
+      
 
 
     }
