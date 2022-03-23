@@ -73,7 +73,7 @@ namespace GneoAPI.Controllers
             try
             {
                 var result = await mediator.Send(new DeleteStudentCommand(command.IDList));
-                return Ok();
+                return Ok(result.IDList);
             }
             catch 
             {
