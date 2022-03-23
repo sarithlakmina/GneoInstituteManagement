@@ -2,16 +2,16 @@
 
 namespace GneoDataAccessLibrary.Migrations
 {
-    public partial class AddStoredProcedure1 : Migration
+    public partial class AddAutoIncrementRegID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            string procedure = @"Create procedure spGetAllCourseIDs
-                                @ID int
-                                as
-                                begin
+            string procedure = @"Create procedure spGetStudentRegID
                                 
-                                    select CourseId from Courses
+                                 as
+                                 begin
+                                SELECT Max(dbo.udf_GetNumeric(RegistrationID)) 
+                                from dbo.Students
                                     
                                    
                                 end";
@@ -20,7 +20,7 @@ namespace GneoDataAccessLibrary.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            string procedure = @"Drop procedure spGetAllCourseIDs";
+            string procedure = @"Drop procedure spGetStudentRegID";
 
             migrationBuilder.Sql(procedure);
         }

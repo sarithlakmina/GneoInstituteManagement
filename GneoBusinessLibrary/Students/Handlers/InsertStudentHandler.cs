@@ -21,8 +21,8 @@ namespace GneoBusinessLibrary.Students.Handlers
             Context = _context;
         }
         public Task<Student> Handle(InsertStudentCommand request, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(Context.InsertStudent(request.firstName, request.lastName, request.birthDate, request.email,request.NIC));
+        {       
+            return Task.FromResult(Context.InsertStudent(request.firstName, request.lastName, request.birthDate, request.email,request.NIC, request.regID));
         }
     }
 }

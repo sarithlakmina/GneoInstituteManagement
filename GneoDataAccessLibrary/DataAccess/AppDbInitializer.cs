@@ -108,7 +108,7 @@ namespace GneoDataAccessLibrary.DataAccess
 
                     }
 
-                   
+
 
 
 
@@ -168,117 +168,117 @@ namespace GneoDataAccessLibrary.DataAccess
 
         public static void GetStudentsObjects()
         {
-            objStudent1.Birthdate = new DateTimeOffset(2008, 5, 1, 8, 6, 32,
-                                 new TimeSpan(1, 0, 0));
+            objStudent1.Birthdate = new DateTimeOffset(1991, 5, 1, 8, 6, 32,
+                     new TimeSpan(1, 0, 0));
             objStudent1.StudentID = Guid.NewGuid();
             objStudent1.RegistrationID = "STD001";
             objStudent1.FirstName = "James";
             objStudent1.LastName = "Butt";
-            objStudent1.Email = "jbutt@gmail.com";
-            objStudent1.NICNo = "199112304556";
+            objStudent1.Email = objStudent1.FirstName.ToLower() + "@gmail.com";
+            objStudent1.NICNo = "199123402669";
             objStudent1.IsDeleted = false;
             objStudent1.Courses = objCourse1;
 
-            objStudent2.Birthdate = new DateTimeOffset(2001, 6, 2, 8, 6, 32,
+            objStudent2.Birthdate = new DateTimeOffset(1992, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent2.StudentID = Guid.NewGuid();
             objStudent2.RegistrationID = "STD002";
             objStudent2.FirstName = "Josephine";
             objStudent2.LastName = "Darakjy";
-            objStudent2.Email = "josephine_darakjy@darakjy.org";
-            objStudent2.NICNo = "200162863210";
+            objStudent2.Email = objStudent2.FirstName.ToLower() + "@gmail.com";
+            objStudent2.NICNo = "199223402669";
             objStudent2.IsDeleted = false;
             objStudent2.Courses = objCourse2;
 
-            objStudent3.Birthdate = new DateTimeOffset(2000, 7, 11, 9, 6, 32,
+            objStudent3.Birthdate = new DateTimeOffset(1993, 7, 11, 9, 6, 32,
                   new TimeSpan(1, 0, 0));
             objStudent3.StudentID = Guid.NewGuid();
             objStudent3.RegistrationID = "STD003";
-            objStudent3.FirstName = "James";
-            objStudent3.LastName = "Butt";
-            objStudent3.Email = "jbutt@gmail.com";
-            objStudent3.NICNo = "199912304556";
+            objStudent3.FirstName = "Sam";
+            objStudent3.LastName = "Curran";
+            objStudent3.Email = objStudent3.FirstName.ToLower() + "@gmail.com";
+            objStudent3.NICNo = "199323402669";
             objStudent3.IsDeleted = false;
             objStudent3.Courses = objCourse1;
 
-            objStudent4.Birthdate = new DateTimeOffset(2001, 6, 2, 8, 6, 32,
+            objStudent4.Birthdate = new DateTimeOffset(1994, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent4.StudentID = Guid.NewGuid();
             objStudent4.RegistrationID = "STD002";
-            objStudent4.FirstName = "Josephine";
-            objStudent4.LastName = "Darakjy";
-            objStudent4.Email = "josephine_darakjy@darakjy.org";
-            objStudent4.NICNo = "200162863210";
+            objStudent4.FirstName = "Rickey";
+            objStudent4.LastName = "Ponting";
+            objStudent4.Email = objStudent4.FirstName.ToLower() + "@gmail.com";
+            objStudent4.NICNo = "199423402669";
             objStudent4.IsDeleted = false;
             objStudent4.Courses = objCourse2;
 
 
 
 
-            objStudent5.Birthdate = new DateTimeOffset(2008, 5, 1, 8, 6, 32,
+            objStudent5.Birthdate = new DateTimeOffset(1995, 5, 1, 8, 6, 32,
                                 new TimeSpan(1, 0, 0));
             objStudent5.StudentID = Guid.NewGuid();
             objStudent5.RegistrationID = "STD001";
-            objStudent5.FirstName = "James";
-            objStudent5.LastName = "Butt";
-            objStudent5.Email = "jbutt@gmail.com";
-            objStudent5.NICNo = "199112304556";
+            objStudent5.FirstName = "John";
+            objStudent5.LastName = "Snow";
+            objStudent5.Email = objStudent5.FirstName.ToLower() + "@gmail.com";
+            objStudent5.NICNo = "199523402669";
             objStudent1.IsDeleted = false;
             objStudent5.Courses = objCourse1;
 
-            objStudent6.Birthdate = new DateTimeOffset(2001, 6, 2, 8, 6, 32,
+            objStudent6.Birthdate = new DateTimeOffset(1996, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent6.StudentID = Guid.NewGuid();
             objStudent6.RegistrationID = "STD002";
-            objStudent6.FirstName = "Josephine";
-            objStudent6.LastName = "Darakjy";
-            objStudent6.Email = "josephine_darakjy@darakjy.org";
-            objStudent6.NICNo = "200162863210";
+            objStudent6.FirstName = "Will";
+            objStudent6.LastName = "Smith";
+            objStudent6.Email = objStudent6.FirstName.ToLower() + "@gmail.com";
+            objStudent6.NICNo = "199623402669";
             objStudent6.IsDeleted = false;
             objStudent6.Courses = objCourse2;
 
-            objStudent7.Birthdate = new DateTimeOffset(2000, 7, 11, 9, 6, 32,
+            objStudent7.Birthdate = new DateTimeOffset(1997, 7, 11, 9, 6, 32,
                   new TimeSpan(1, 0, 0));
             objStudent7.StudentID = Guid.NewGuid();
             objStudent7.RegistrationID = "STD003";
-            objStudent7.FirstName = "James";
-            objStudent7.LastName = "Butt";
-            objStudent7.Email = "jbutt@gmail.com";
-            objStudent7.NICNo = "199912304556";
+            objStudent7.FirstName = "Tom";
+            objStudent7.LastName = "Heart";
+            objStudent7.Email = objStudent7.FirstName.ToLower() + "@gmail.com";
+            objStudent7.NICNo = "199723402669";
             objStudent7.IsDeleted = false;
             objStudent7.Courses = objCourse1;
 
-            objStudent8.Birthdate = new DateTimeOffset(2001, 6, 2, 8, 6, 32,
+            objStudent8.Birthdate = new DateTimeOffset(1998, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent8.StudentID = Guid.NewGuid();
             objStudent8.RegistrationID = "STD002";
-            objStudent8.FirstName = "Josephine";
-            objStudent8.LastName = "Darakjy";
-            objStudent8.Email = "josephine_darakjy@darakjy.org";
-            objStudent8.NICNo = "200162863210";
+            objStudent8.FirstName = "Peter";
+            objStudent8.LastName = "Siddle";
+            objStudent8.Email = objStudent8.FirstName.ToLower() + "@gmail.com";
+            objStudent8.NICNo = "199823402669";
             objStudent8.IsDeleted = false;
             objStudent8.Courses = objCourse2;
 
 
-            objStudent9.Birthdate = new DateTimeOffset(2000, 7, 11, 9, 6, 32,
+            objStudent9.Birthdate = new DateTimeOffset(1999, 7, 11, 9, 6, 32,
                   new TimeSpan(1, 0, 0));
             objStudent9.StudentID = Guid.NewGuid();
             objStudent9.RegistrationID = "STD003";
-            objStudent9.FirstName = "James";
-            objStudent9.LastName = "Butt";
-            objStudent9.Email = "jbutt@gmail.com";
-            objStudent9.NICNo = "199912304556";
+            objStudent9.FirstName = "Shane";
+            objStudent9.LastName = "Bond";
+            objStudent9.Email = objStudent9.FirstName.ToLower() + "@gmail.com";
+            objStudent9.NICNo = "199923402669";
             objStudent9.IsDeleted = false;
             objStudent9.Courses = objCourse1;
 
-            objStudent10.Birthdate = new DateTimeOffset(2001, 6, 2, 8, 6, 32,
+            objStudent10.Birthdate = new DateTimeOffset(2000, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent10.StudentID = Guid.NewGuid();
             objStudent10.RegistrationID = "STD002";
-            objStudent10.FirstName = "Josephine";
-            objStudent10.LastName = "Darakjy";
-            objStudent10.Email = "josephine_darakjy@darakjy.org";
-            objStudent10.NICNo = "200162863210";
+            objStudent10.FirstName = "Brett";
+            objStudent10.LastName = "Lee";
+            objStudent10.Email = objStudent10.FirstName.ToLower() + "@gmail.com";
+            objStudent10.NICNo = "200023402669";
             objStudent10.IsDeleted = false;
             objStudent10.Courses = objCourse2;
 

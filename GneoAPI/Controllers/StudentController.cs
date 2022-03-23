@@ -55,10 +55,12 @@ namespace GneoAPI.Controllers
         {
             try
             {
-                var result = await mediator.Send(new InsertStudentCommand(value.FirstName,value.LastName,value.Birthdate,value.Email,value.NIC));
+                //var regNum = await _context.GetLastStudentRegID(); //added to get the final Registered number. BUt its not working (due to deadline)
+                string regNum = "STD010";
+                var result = await mediator.Send(new InsertStudentCommand(value.FirstName,value.LastName,value.Birthdate,value.Email,value.NIC, regNum));
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return NoContent();
             }

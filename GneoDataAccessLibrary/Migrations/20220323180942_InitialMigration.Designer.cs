@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GneoDataAccessLibrary.Migrations
 {
     [DbContext(typeof(GneoDataContext))]
-    [Migration("20220323062637_AddGetAvailableCourses")]
-    partial class AddGetAvailableCourses
+    [Migration("20220323180942_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,9 @@ namespace GneoDataAccessLibrary.Migrations
                     b.HasKey("StudentID");
 
                     b.HasIndex("CoursesCourseID");
+
+                    b.HasIndex("Email", "NICNo")
+                        .IsUnique();
 
                     b.ToTable("Students");
                 });

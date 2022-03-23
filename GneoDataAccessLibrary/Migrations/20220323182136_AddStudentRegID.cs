@@ -2,17 +2,16 @@
 
 namespace GneoDataAccessLibrary.Migrations
 {
-    public partial class AddGetAvailableCoursesList : Migration
+    public partial class AddStudentRegID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            string procedure = @"Create procedure spGetAllAvailableCourses
-                                @ID int
-                                as
-                                begin
+            string procedure = @"Create procedure spGetStudentRegisterID
                                 
-                                    select CourseID from Courses
-                                    where IsDeleted = 'false'
+                                 as
+                                 begin
+                                SELECT Max(dbo.udf_GetNumeric(RegistrationID)) 
+                                from dbo.Students
                                     
                                    
                                 end";
@@ -21,7 +20,7 @@ namespace GneoDataAccessLibrary.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            string procedure = @"Drop procedure spGetAllAvailableCourses";
+            string procedure = @"Drop procedure spGetStudentRegisterID";
 
             migrationBuilder.Sql(procedure);
         }

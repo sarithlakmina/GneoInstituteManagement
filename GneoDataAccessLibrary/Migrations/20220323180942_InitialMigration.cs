@@ -92,6 +92,12 @@ namespace GneoDataAccessLibrary.Migrations
                 name: "IX_Students_CoursesCourseID",
                 table: "Students",
                 column: "CoursesCourseID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_Email_NICNo",
+                table: "Students",
+                columns: new[] { "Email", "NICNo" },
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

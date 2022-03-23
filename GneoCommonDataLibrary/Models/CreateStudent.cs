@@ -13,6 +13,5 @@ namespace GneoCommonDataLibrary.Models
         public DateTimeOffset Birthdate { get; set; }
         public string Email { get; set; }
         public string NIC { get; set; }
-        public string RegistrationNumber { get; set; } 
     }
 }

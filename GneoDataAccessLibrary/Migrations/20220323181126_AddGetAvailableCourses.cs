@@ -11,7 +11,8 @@ namespace GneoDataAccessLibrary.Migrations
                                 as
                                 begin
                                 
-                                    select CourseId from Courses
+                                    select CourseID from Courses
+                                    where IsDeleted = 'false'
                                     
                                    
                                 end";

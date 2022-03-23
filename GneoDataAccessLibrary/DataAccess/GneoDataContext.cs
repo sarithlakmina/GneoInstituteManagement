@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
 using GneoCommonDataLibrary.StoredProcedureModels;
+using GneoCommonDataLibrary.Common;
 
 namespace GneoDataAccessLibrary.DataAccess
 {
@@ -53,6 +54,12 @@ namespace GneoDataAccessLibrary.DataAccess
             return Students.FromSqlRaw<Student>("spGetAllAvailableStudents").ToListAsync();
         }
 
+        public Task<List<Student>> GetLastStudentRegID()
+        {
+            return Students.FromSqlRaw<Student>("spGetStudentRegisterID").ToListAsync();
+            // return Students.FromSqlRaw("spGetStudentRegisterID").ToList().FirstOrDefault();    //this is not functioning
+        }
+
         public Teacher InsertTeacher(Guid teacherid,string firstName, string lastName,bool isdeleted)
         {
             Teacher oTeacher = new() {TeacherID=teacherid ,FirstName = firstName, LastName = lastName,IsDeleted=false };
@@ -64,9 +71,13 @@ namespace GneoDataAccessLibrary.DataAccess
         }
 
         // public CreateStudent InsertStudent(string FirstName, string LastName, DateTimeOffset Birthdate, string Email, string NIC, string RegistrationNumber)
-        public Student InsertStudent(string firstName, string lastName, DateTimeOffset birthDate, string email, string NIC)
+        public Student InsertStudent(string firstName, string lastName, DateTimeOffset birthDate, string email, string NIC, string RegID)
         {
-           Student oStudent = new() { StudentID= Guid.NewGuid(), FirstName = firstName, LastName = lastName, Birthdate= birthDate, IsDeleted=false,Email= email, RegistrationID="STD011", NICNo=NIC};
+            
+            
+            string regID= RegIDGenerator.GenerateID(RegID); 
+
+            Student oStudent = new() { StudentID= Guid.NewGuid(), FirstName = firstName, LastName = lastName, Birthdate= birthDate, IsDeleted=false,Email= email, RegistrationID=regID, NICNo=NIC};
          
 
             Students.Add(oStudent);
@@ -104,6 +115,8 @@ namespace GneoDataAccessLibrary.DataAccess
             }
 
         }
+
+       
       
 
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GneoDataAccessLibrary.Migrations
 {
     [DbContext(typeof(GneoDataContext))]
-    [Migration("20220323135622_AddIndexingforNICnEmail")]
-    partial class AddIndexingforNICnEmail
+    [Migration("20220323181733_AddAutoIncrementRegID")]
+    partial class AddAutoIncrementRegID
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

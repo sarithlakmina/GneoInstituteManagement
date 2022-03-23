@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GneoBusinessLibrary.Students.Commands
 {
-    public record InsertStudentCommand(string firstName, string lastName, DateTimeOffset birthDate,string email, string NIC) : IRequest<Student> { }
+    public record InsertStudentCommand(string firstName, string lastName, DateTimeOffset birthDate,string email, string NIC, string regID) : IRequest<Student> { }
 
     
 }
