@@ -66,8 +66,8 @@ namespace GneoAPI.Controllers
             }
         }
 
-
-        [HttpPut("{id}")]       
+       
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromBody]DeleteStudent command)
         {
             try

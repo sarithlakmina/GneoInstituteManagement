@@ -204,7 +204,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent4.Birthdate = new DateTimeOffset(1994, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent4.StudentID = Guid.NewGuid();
-            objStudent4.RegistrationID = "STD002";
+            objStudent4.RegistrationID = "STD004";
             objStudent4.FirstName = "Rickey";
             objStudent4.LastName = "Ponting";
             objStudent4.Email = objStudent4.FirstName.ToLower() + "@gmail.com";
@@ -218,7 +218,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent5.Birthdate = new DateTimeOffset(1995, 5, 1, 8, 6, 32,
                                 new TimeSpan(1, 0, 0));
             objStudent5.StudentID = Guid.NewGuid();
-            objStudent5.RegistrationID = "STD001";
+            objStudent5.RegistrationID = "STD005";
             objStudent5.FirstName = "John";
             objStudent5.LastName = "Snow";
             objStudent5.Email = objStudent5.FirstName.ToLower() + "@gmail.com";
@@ -229,7 +229,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent6.Birthdate = new DateTimeOffset(1996, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent6.StudentID = Guid.NewGuid();
-            objStudent6.RegistrationID = "STD002";
+            objStudent6.RegistrationID = "STD006";
             objStudent6.FirstName = "Will";
             objStudent6.LastName = "Smith";
             objStudent6.Email = objStudent6.FirstName.ToLower() + "@gmail.com";
@@ -240,7 +240,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent7.Birthdate = new DateTimeOffset(1997, 7, 11, 9, 6, 32,
                   new TimeSpan(1, 0, 0));
             objStudent7.StudentID = Guid.NewGuid();
-            objStudent7.RegistrationID = "STD003";
+            objStudent7.RegistrationID = "STD007";
             objStudent7.FirstName = "Tom";
             objStudent7.LastName = "Heart";
             objStudent7.Email = objStudent7.FirstName.ToLower() + "@gmail.com";
@@ -251,7 +251,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent8.Birthdate = new DateTimeOffset(1998, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent8.StudentID = Guid.NewGuid();
-            objStudent8.RegistrationID = "STD002";
+            objStudent8.RegistrationID = "STD008";
             objStudent8.FirstName = "Peter";
             objStudent8.LastName = "Siddle";
             objStudent8.Email = objStudent8.FirstName.ToLower() + "@gmail.com";
@@ -263,7 +263,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent9.Birthdate = new DateTimeOffset(1999, 7, 11, 9, 6, 32,
                   new TimeSpan(1, 0, 0));
             objStudent9.StudentID = Guid.NewGuid();
-            objStudent9.RegistrationID = "STD003";
+            objStudent9.RegistrationID = "STD009";
             objStudent9.FirstName = "Shane";
             objStudent9.LastName = "Bond";
             objStudent9.Email = objStudent9.FirstName.ToLower() + "@gmail.com";
@@ -274,7 +274,7 @@ namespace GneoDataAccessLibrary.DataAccess
             objStudent10.Birthdate = new DateTimeOffset(2000, 6, 2, 8, 6, 32,
                     new TimeSpan(1, 0, 0));
             objStudent10.StudentID = Guid.NewGuid();
-            objStudent10.RegistrationID = "STD002";
+            objStudent10.RegistrationID = "STD0010";
             objStudent10.FirstName = "Brett";
             objStudent10.LastName = "Lee";
             objStudent10.Email = objStudent10.FirstName.ToLower() + "@gmail.com";

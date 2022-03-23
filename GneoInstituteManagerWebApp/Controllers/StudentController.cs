@@ -34,5 +34,12 @@ namespace GneoInstituteManagerWebApp.Controllers
             }
             return View(courseList);
         }
+
+        public IActionResult Delete(Guid id)
+        {
+            StudentViewModel svm = null;
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "svm?StudentID" +id.ToString() ).Result;
+            return View(svm);
+        }
     }
 }
