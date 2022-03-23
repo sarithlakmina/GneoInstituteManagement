@@ -8,6 +8,6 @@ namespace GneoCommonDataLibrary.Models
 {
     public class DeleteStudent
     {
-        public string IDList { get; set; }
+        public string IDList { get; set; } //List to be implemented
     }
 }

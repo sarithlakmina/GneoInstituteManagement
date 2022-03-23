@@ -24,12 +24,20 @@ namespace GneoBusinessLibrary.Courses.Handlers
         }
         public async Task<GetAllCoursesQueryResult> Handle(GetAllCoursesQuery request, CancellationToken cancellationToken)
         {
-            var Courses = await dataContext.GetAllCourses();
-
-            return new GetAllCoursesQueryResult
+            try
             {
-                CoursesList = mapper.Map<List<Course>>(Courses)
-            };
+                var Courses = await dataContext.GetAllCourses();
+
+                return new GetAllCoursesQueryResult
+                {
+                    CoursesList = mapper.Map<List<Course>>(Courses)
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -10,9 +10,18 @@ namespace GneoCommonDataLibrary.Common
     {
         public static string GenerateID(string currentID)
         {
-            int val = int.Parse(currentID.Substring(3));
-            val++;
-            return currentID.Substring(0, 3) + val.ToString().PadLeft(3, '0');
+            try
+            {
+                int val = int.Parse(currentID.Substring(3));
+                val++;
+                return currentID.Substring(0, 3) + val.ToString().PadLeft(3, '0');
+            }
+            catch (Exception)
+            {
+
+                return "STD000";
+            }
+            
         }
     }
 }

@@ -23,7 +23,15 @@ namespace GneoBusinessLibrary.Courses.Handlers
 
         public Task<EnrollCourse> Handle(InsertCourseCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(Context.InsertCourse(request.CourseID, request.StudentID));
+            try
+            {
+                return Task.FromResult(Context.InsertCourse(request.CourseID, request.StudentID));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

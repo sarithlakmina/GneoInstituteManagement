@@ -32,8 +32,6 @@ namespace GneoCommonDataLibrary.Models
         public virtual Teacher Teacher { get; set; } 
         public virtual ICollection<Student> Students { get; set; } 
 
-        
-      
 
     }
 }

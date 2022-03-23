@@ -25,8 +25,16 @@ namespace GneoAPI.Controllers
         {
             //return configuration.Value.Info;
             //var c = new InfoConfig();
-            return Content($"Author: {InfoConfig.Author} \n" +
-                      $"Hardest Challenges : {InfoConfig.HardestChallenge}");
+            try
+            {
+                return Content($"Author: {InfoConfig.Author} \n" +
+                            $"Hardest Challenges : {InfoConfig.HardestChallenge}");
+            }
+            catch (Exception)
+            {
+
+                return NoContent(); ;
+            }
         }
         
     }

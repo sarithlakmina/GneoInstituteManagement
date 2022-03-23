@@ -23,16 +23,29 @@ namespace GneoInstituteManagerWebApp.Controllers
 
         public IActionResult All()
         {
-            List<TeacherViewModel> teacherList = new List<TeacherViewModel>();
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Teacher/all").Result;
-
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                teacherList = JsonConvert.DeserializeObject<List<TeacherViewModel>>(data);
+                List<TeacherViewModel> teacherList = new List<TeacherViewModel>();
+                HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Teacher/all").Result;
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    teacherList = JsonConvert.DeserializeObject<List<TeacherViewModel>>(data);
+                }
+                return View(teacherList);
             }
-            return View(teacherList);
+            catch (Exception)
+            {
+
+                return NoContent();
+            }
+        }
+
+        public IActionResult Edit()
+        {
+            return View();
         }
     }
 }

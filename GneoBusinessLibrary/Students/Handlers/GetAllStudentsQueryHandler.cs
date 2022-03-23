@@ -28,12 +28,20 @@ namespace GneoBusinessLibrary.Students.Handlers
 
         public async Task<GetAllStudentsQueryResult> Handle(GetAllStudentsQuery request, CancellationToken cancellationToken)
         {
-            var students = await dataContext.GetAllStudents();
-
-            return new GetAllStudentsQueryResult
+            try
             {
-                StudentsList = mapper.Map<List<StudentViewModel>>(students)
-            };
+                var students = await dataContext.GetAllStudents();
+
+                return new GetAllStudentsQueryResult
+                {
+                    StudentsList = mapper.Map<List<StudentViewModel>>(students)
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

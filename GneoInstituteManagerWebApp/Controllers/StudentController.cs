@@ -23,23 +23,86 @@ namespace GneoInstituteManagerWebApp.Controllers
 
         public IActionResult All()
         {
-            List<StudentViewModel> courseList = new List<StudentViewModel>();
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Student/all").Result;
-          
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                courseList = JsonConvert.DeserializeObject<List<StudentViewModel>>(data);
+
+                List<StudentViewModel> studentsList = new List<StudentViewModel>();
+                HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api/Student/all").Result;
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    studentsList = JsonConvert.DeserializeObject<List<StudentViewModel>>(data);
+                }
+                return View(studentsList);
             }
-            return View(courseList);
+            catch (Exception)
+            {
+
+                return NoContent();
+            }
         }
 
-        public IActionResult Delete(Guid id)
+        public IActionResult Create()
         {
-            StudentViewModel svm = null;
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "svm?StudentID" +id.ToString() ).Result;
-            return View(svm);
+            try
+            {
+                List<Guid> studentsList = new List<Guid>();
+                ViewBag.studentsList = studentsList;
+                return View();
+            }
+            catch (Exception)
+            {
+
+                return NoContent();
+            }
         }
+
+        [HttpPost]
+        public IActionResult Create(CreateStudentViewModel createStd)
+        {
+            try
+            {
+                var clienturl = client.BaseAddress + "api/student/create";
+                var postTask = client.PostAsJsonAsync<CreateStudentViewModel>(clienturl, createStd);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("all");
+                }
+                ViewBag.CourseID = new List<Guid>();
+                return View();
+            }
+            catch (Exception ex)
+            {
+
+                return NoContent();
+            }
+        }
+
+       
+        public IActionResult Delete(Guid ID)
+        {
+            try
+            {
+                StudentViewModel svm = new StudentViewModel();
+                HttpResponseMessage response = client.GetAsync(client.BaseAddress + "svm?StudentID" + ID.ToString()).Result;  //not completed
+                return View();
+            }
+            catch (Exception)
+            {
+                return NoContent();
+            }
+        }
+
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+
     }
 }

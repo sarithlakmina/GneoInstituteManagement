@@ -1,72 +1,83 @@
 ﻿@model IEnumerable<GneoInstituteManagerWebApp.ViewModels.StudentViewModel>
 
-@{<div class="container">
-        <div class="row">
-            <div class="col-8 offset-2" style="padding-top:50px;">
-                <h1 class="text-center accent-gray">Students Details</h1>
-                <p>
-                    <a asp-action="AddEditStudent" class="btn btn-success"><i class="fas fa-random"></i> Add New Student</a>
-                </p>
-                <table class="table table-dark table-hover" style="padding-top:20px;">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FullName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.StudentID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RegistrationID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Email)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Birthdate)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NICNo)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+@{
+  
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2" style="padding-top:50px;">
+                    <h1 class="text-center accent-gray">Students Details</h1>
+                    <p>
+                        <a asp-controller="Student" asp-action="Create" class="btn btn-success"><i class="fas fa-address-card"></i> Add New Student</a>
+                    </p>
+                    <table class="table table-dark table-hover" style="padding-top:20px;">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FullName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StudentID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RegistrationID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Birthdate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NICNo)
-                                </td>
-                                <td>
-                                    <a asp-action="AddEditCourse" class="btn btn-default">Edit</a> |
-                                    <a></a>
-                                    <a asp-action="DeleteCourse" class="btn btn-danger">Delete</a>
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.StudentID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RegistrationID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Birthdate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NICNo)
+                                </th>
+                                <th>
+                                    Actions      
+                                </th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StudentID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RegistrationID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Birthdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NICNo)
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Student" asp-action="Edit" class="btn btn-default">Edit</a> |
+                                        <a asp-controller="Student" asp-action="Delete" class="btn btn-danger">Delete</a> |
+
+
+                                        @*@using (Html.BeginForm("Delete", "Student", new { id = item.StudentID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure?');" , RedirectToPageResult = "Edit" }))
+        {
+                @Html.AntiForgeryToken();
+            <input type="submit" value="Delete"/>
+            }*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+       
 
-}
+    }
 
 
 

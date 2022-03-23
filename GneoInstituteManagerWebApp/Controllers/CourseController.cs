@@ -37,34 +37,72 @@ namespace GneoInstituteManagerWebApp.Controllers
                 return View(courseList);
             }
             catch (Exception)
-            {                
-                throw;
+            {
+                return NoContent();
             }
         }
 
         public IActionResult Enroll()
         {
-            List<Guid> CourseIds = new List<Guid>();
-            ViewBag.CourseID =CourseIds;
-            return View();
+            try
+            {
+                List<Guid> CourseIds = new List<Guid>();
+                ViewBag.CourseID = CourseIds;
+                return View();
+            }
+            catch (Exception)
+            {
+
+                return NoContent();
+            }
         }
 
         [HttpPost]
         public IActionResult Enroll(EnrolledCourseViewModel enrolledCourseViewModel)
         {
-            var clienturl = client.BaseAddress + "api/Course/enroll";
-            var postTask = client.PostAsJsonAsync<EnrolledCourseViewModel>(clienturl, enrolledCourseViewModel);
-            postTask.Wait();
-
-            var result = postTask.Result;
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("all");
+                var clienturl = client.BaseAddress + "api/Course/enroll";
+                var postTask = client.PostAsJsonAsync<EnrolledCourseViewModel>(clienturl, enrolledCourseViewModel);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("all");
+                }
+                ViewBag.CourseID = new List<Guid>();
+                return View();
             }
-            ViewBag.CourseID = new List<Guid>();
+            catch (Exception)
+            {
+
+                return NoContent();
+            }
+        }
+
+        public IActionResult Edit()
+        {
             return View();
         }
-       
+
+        [HttpPost]
+        public IActionResult Edit(EnrolledCourseViewModel enrolledCourseViewModel)
+        {            
+            return View();
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(EnrolledCourseViewModel enrolledCourseViewModel)
+        {
+            return View();
+        }
+
 
 
     }

@@ -22,7 +22,15 @@ namespace GneoBusinessLibrary.Students.Handlers
         }
         public Task<DeleteStudent> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(Context.DeleteStudent(request.idList));
+            try
+            {
+                return Task.FromResult(Context.DeleteStudent(request.idList));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
