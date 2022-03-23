@@ -33,7 +33,7 @@ namespace GneoAPI.Controllers
             catch (Exception)
             {
 
-                return NoContent(); ;
+               throw; 
             }
         }
         
