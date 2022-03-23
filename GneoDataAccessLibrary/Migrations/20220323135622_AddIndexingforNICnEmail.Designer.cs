@@ -4,14 +4,16 @@ using GneoDataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GneoDataAccessLibrary.Migrations
 {
     [DbContext(typeof(GneoDataContext))]
-    partial class GneoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20220323135622_AddIndexingforNICnEmail")]
+    partial class AddIndexingforNICnEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

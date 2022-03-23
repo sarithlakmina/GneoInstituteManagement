@@ -21,6 +21,8 @@
     <Compile Include="Migrations\20220323062923_AddGetAvailableStudents.Designer.cs" />
     <Compile Include="Migrations\20220323063607_AddGetAvailableCoursesList.cs" />
     <Compile Include="Migrations\20220323063607_AddGetAvailableCoursesList.Designer.cs" />
+    <Compile Include="Migrations\20220323135622_AddIndexingforNICnEmail.cs" />
+    <Compile Include="Migrations\20220323135622_AddIndexingforNICnEmail.Designer.cs" />
     <Compile Include="Migrations\GneoDataContextModelSnapshot.cs" />
   </ItemGroup>
 
