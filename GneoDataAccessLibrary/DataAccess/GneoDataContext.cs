@@ -64,15 +64,14 @@ namespace GneoDataAccessLibrary.DataAccess
         }
 
         // public CreateStudent InsertStudent(string FirstName, string LastName, DateTimeOffset Birthdate, string Email, string NIC, string RegistrationNumber)
-        public CreateStudent InsertStudent(CreateStudent crtStudent)
+        public Student InsertStudent(string firstName, string lastName, DateTimeOffset birthDate, string email, string NIC)
         {
-            Student oStudent = new() { FirstName = crtStudent.FirstName, LastName = crtStudent.LastName, Birthdate= crtStudent.Birthdate, Email= crtStudent.Email};
-            CreateStudent del = new CreateStudent();
-           // var delStd = Students.Where(a => a.StudentID.ToString() == studentId.ToString()).FirstOrDefault();
+           Student oStudent = new() { StudentID= Guid.NewGuid(), FirstName = firstName, LastName = lastName, Birthdate= birthDate, IsDeleted=false,Email= email, RegistrationID="STD011", NICNo=NIC};
+         
 
             Students.Add(oStudent);
             SaveChangesAsync();
-            return del;
+            return oStudent;
 
         }
 

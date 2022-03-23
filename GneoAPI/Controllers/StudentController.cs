@@ -51,11 +51,11 @@ namespace GneoAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create([FromBody] CreateStudent value)
+        public async Task<IActionResult> Create(CreateStudent value)
         {
             try
             {
-                var result = await mediator.Send(new InsertStudentCommand(new CreateStudent()));
+                var result = await mediator.Send(new InsertStudentCommand(value.FirstName,value.LastName,value.Birthdate,value.Email,value.NIC));
                 return Ok(result);
             }
             catch (Exception)
